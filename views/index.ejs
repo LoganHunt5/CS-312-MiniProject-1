@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Name Letters</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+    </head>
+
+    <body>
+        <!-- Write your code here -->
+        <div class="Wrap">
+            <div class="PostSide">
+                <% if(edit) {%>
+                <h1 class="PostHead">Edit Post!</h1>
+                <form action="/post" method="POST">
+                    <input class="InputTitle" type="text" name="PostTitle" placeholder="Title">
+                    <textarea class="InputContent" type="text" name="PostContent" placeholder="Content"></textarea>
+                    <input class="PostButton" type="submit" value="Edit">
+                </form>
+                <%} else {%>
+                <h1 class="PostHead">Make A Post!</h1>
+                <form action="/post" method="POST">
+                    <input class="InputTitle" type="text" name="PostTitle" placeholder="Title">
+                    <textarea class="InputContent" type="text" name="PostContent" placeholder="Content"></textarea>
+                    <input class="PostButton" type="submit" value="Post">
+                </form>
+                <%}%>
+            </div>
+            <div class="BlogsWrap">
+                <% if (locals.posts) { %>
+                <ul class="PostsList">
+                    <% for (let i = length-1; i >= 0; i--) { %>
+                    <% console.log(posts.get(i.toString())) %>
+                    <% if(posts.get(i.toString())) { %>
+                    <% let post = posts.get(i.toString())%>
+                    <li class="Post">
+                        <h2>
+                            <%=post[0] %>
+                        </h2>
+                        <p>
+                        <%=post[1] %>
+                        </p>
+                        <div class="data">
+                            <p>
+                            <%=post[2] %>
+                            By Root
+                            </p>
+                        </div>
+                        <div class="Actions">
+                            <form class="Edit" action="/edit" method="POST">
+                                <button>
+                                    <input type="hidden" name="index" value="<%=post[3]%>">
+                                    Edit
+                                </button>
+                            </form>
+                            <form class="Delete" action="/delete" method="POST">
+                                <button>
+                                    <input type="hidden" name="index" value="<%=post[3]%>">
+                                    Delete
+                                </button> 
+                            </form>
+                        </div>
+                    </li>
+                    <% } %>
+                    <% } %>
+                </ul>
+                <% } else { %>
+                <h1>No Posts Yet!</h1>
+                <% } %>
+            </div>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,106 @@
+body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+.Wrap{
+    display:grid;
+    grid-template-columns: 2fr 4fr;
+    height: 100%;
+    width: 100%;
+}
+
+.PostSide{
+    position: sticky;
+    top: 60px;
+    height: fit-content;
+    margin-left: 40px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.PostSide>form{
+    width: 80%;
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+}
+
+.PostButton{
+    position: relative;
+    top: 20px;
+    width: 50%;
+    height: 40px;
+    background-color: rgb(102, 217, 182);
+    border: 1.5px solid black;
+    border-radius: 8px;
+}
+
+.PostButton:hover{
+    background-color: rgb(48, 102, 86);
+    color: white;
+}
+
+.InputTitle{
+    height: 40px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.InputContent{
+    position: relative;
+    resize: none;
+    top: 5px;
+    height: 100px;
+    width: 100%;
+}
+
+.BlogsWrap{
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.PostsList{
+   list-style-type: none;
+}
+
+.Post{
+    text-align: center;
+}
+
+.Post>h2{
+    font-size: 2rem;
+}
+.Post>p{
+    font-size: 1.3rem;
+}
+
+.Actions{
+    display: flex;
+}
+.Edit, .Delete{
+    width: 50%;
+}
+
+.Edit button, .Delete button{
+    background-color: rgb(102, 217, 182);
+    border: 1.5px solid black;
+    width: 100%;
+    height: 30px;
+}
+.Edit{
+    margin-right: 5px;
+}
+
+.Edit button:hover, .Delete button:hover{
+    background-color: rgb(48, 102, 86);
+    color: white;
+}
