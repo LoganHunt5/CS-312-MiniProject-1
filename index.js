@@ -66,6 +66,8 @@ app.post("/post", (req, res) => {
 });
 
 app.post("/delete", (req,res) => {
+    edit = false;
+    editIndex = -1;
     posts.delete(req.body["index"]);
 
     res.redirect('/');

@@ -13,10 +13,11 @@
         <div class="Wrap">
             <div class="PostSide">
                 <% if(edit) {%>
+                    <% let post = posts.get(editIndex)%>
                 <h1 class="PostHead">Edit Post!</h1>
                 <form action="/post" method="POST">
-                    <input class="InputTitle" type="text" name="PostTitle" placeholder="Title">
-                    <textarea class="InputContent" type="text" name="PostContent" placeholder="Content"></textarea>
+                    <input class="InputTitle" type="text" name="PostTitle" placeholder=<%=post[0]%>>
+                    <textarea class="InputContent" type="text" name="PostContent" placeholder=<%=post[1]%>></textarea>
                     <input class="PostButton" type="submit" value="Edit">
                 </form>
                 <%} else {%>
