@@ -9,15 +9,17 @@
     </head>
 
     <body>
-        <!-- Write your code here -->
         <div class="Wrap">
             <div class="PostSide">
+                <% if(currentUser[0].length!=0){%>
+                <a class="LogSignLink" href="/logout">Log Out</a>
+                <p>Hello <%=currentUser[0]%></p>
                 <% if(edit) {%>
-                    <% let post = posts.get(editIndex)%>
-                <h1 class="PostHead">Edit Post!</h1>
+                <% let post = posts[editId]%>
+                <h1 class="PostHead">Edit Post #<%=editId%>!</h1>
                 <form action="/post" method="POST">
-                    <input class="InputTitle" type="text" name="PostTitle" placeholder=<%=post[0]%>>
-                    <textarea class="InputContent" type="text" name="PostContent" placeholder=<%=post[1]%>></textarea>
+                    <input class="InputTitle" type="text" name="PostTitle" placeholder="New Title">
+                    <textarea class="InputContent" type="text" name="PostContent" placeholder="New Body"></textarea>
                     <input class="PostButton" type="submit" value="Edit">
                 </form>
                 <%} else {%>
@@ -28,48 +30,51 @@
                     <input class="PostButton" type="submit" value="Post">
                 </form>
                 <%}%>
+                <%} else {%>
+                <div class="LogSignButtonWrap">
+                    <a class="LogSignLink" href="/login">Log In</a>
+                    <a class="LogSignLink" href="/signup">Sign Up</a>
+                </div>
+                <%}%>
             </div>
             <div class="BlogsWrap">
                 <% if (locals.posts) { %>
                 <ul class="PostsList">
-                    <% for (let i = length-1; i >= 0; i--) { %>
-                    <% console.log(posts.get(i.toString())) %>
-                    <% if(posts.get(i.toString())) { %>
-                    <% let post = posts.get(i.toString())%>
+                    <% for (let i = 0; i < posts.length; i++) { %>
+                    <% let post = posts[i]%>
                     <li class="Post">
                         <h2>
-                            <%=post[0] %>
+                            <%=post["title"] %>
                         </h2>
                         <p>
-                        <%=post[1] %>
+                        <%=post["body"] %>
                         </p>
                         <div class="data">
                             <p>
-                            <%=post[2] %>
-                            By Root
+                            <%=post["date_created"]%>
+                            By <%=post["creator_name"]%>
                             </p>
                         </div>
+                        <%if(post["creator_name"] === currentUser[0]){%>
                         <div class="Actions">
                             <form class="Edit" action="/edit" method="POST">
                                 <button>
-                                    <input type="hidden" name="index" value="<%=post[3]%>">
+                                    <input type="hidden" name="id" value="<%=post["blog_id"]%>">
                                     Edit
                                 </button>
                             </form>
                             <form class="Delete" action="/delete" method="POST">
                                 <button>
-                                    <input type="hidden" name="index" value="<%=post[3]%>">
+                                    <input type="hidden" name="id" value="<%=post["blog_id"]%>">
                                     Delete
                                 </button> 
                             </form>
                         </div>
+                        <%}%>
                     </li>
                     <% } %>
                     <% } %>
                 </ul>
-                <% } else { %>
-                <h1>No Posts Yet!</h1>
-                <% } %>
             </div>
         </div>
     </body>
